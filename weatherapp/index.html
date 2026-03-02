@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" text="text/css" href="style.css"/>
+</head>
+<body>
+
+    <h2>World Weather App</h2>
+
+<div id="map"></div>
+
+<form id="locationForm">
+    <select id="countrySelect">
+        <option value="" >All Countries</option>
+    </select>
+
+    <select id="stateSelect">
+    </select>
+
+    <select id="citySelect">
+    </select>
+
+    <button id="submitFormBtn">See Weather</button>
+</form>
+
+
+<button style="background-color: 'green';" value="start" id="btnStartAutoUpdate">Start Auto Update</button>
+ 
+    <!-- Load Maps API (NO callback) -->
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5Ids2no6ktU1Qujo-ZdZwViFPtqVfBSU&libraries=places">
+  </script>
+
+    <!-- Your JavaScript Module -->
+    <script type="module" src="./main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+#map {
+    margin-bottom: 20px;
+    height: 400px;
+    width: 50%;
+    border-radius: 20%;
+}
+
+/* body{
+    background-color: aqua;
+} */
