@@ -15,7 +15,7 @@ export function getDateTime(dateString){
         return {}
     }
 }
-console.log("datetime", getDateTime('2026-03-01T21:00'))
+// console.log("datetime", getDateTime('2026-03-01T21:00'))
 
 
 export function getDirection(bearing) {

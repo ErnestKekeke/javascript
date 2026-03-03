@@ -3,40 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" text="text/css" href="style.css"/>
+    <title>World Weather App | Ernest Kekeke</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="light-theme">
 
-    <h2>World Weather App</h2>
+    <header class="app-header">
+        <h1>World Weather App <span>by Ernest Kekeke</span></h1>
+        <button id="themeToggle" class="theme-btn">🌙 Dark Mode</button>
+    </header>
 
-<div id="map"></div>
+    <main class="dashboard-container">
+        <section class="info-panel">
+            <div id="weather-app">
+                <div class="card" id="weather-info">
+                    <h3>Weather</h3>
+                    <!-- <div class="data-row">Temp: <span id="temp-value">31°C</span></div>
+                    <div class="data-row">Wind: <span id="wind-speed">10.7 km/h</span> <small id="wind-direction">E 17° N</small></div>
+                    <div class="data-row">Desc: <span id="weather-desc">Clear sky</span></div>
+                    <div class="data-row">Elev: <span id="elevation-value">27</span>m | <span id="day-status">Day</span></div> -->
+                    <div class="data-row">Temp: <span id="temp-value">NIL</span></div>
+                    <div class="data-row">Wind: <span id="wind-speed">NIL</span> <small id="wind-direction">NIL</small></div>
+                    <div class="data-row">Desc: <span id="weather-desc">NIL</span></div>
+                    <div class="data-row">Elev: <span id="elevation-value">0</span>m | <span id="day-status">NIL</span></div>
+                </div>
 
-<form id="locationForm">
-    <select id="countrySelect">
-        <option value="" >All Countries</option>
-    </select>
+                <div class="card" id="location-info">
+                    <h3>Location</h3>
+                    <!-- <div class="data-row"><strong>City:</strong> <span id="city-name">Sapele</span> (<span id="locality-name">Sapele</span>)</div>
+                    <div class="data-row"><strong>State:</strong> <span id="state-name">Delta</span> <small id="state-code">NG-DE</small></div>
+                    <div class="data-row"><strong>Country:</strong> <span id="country-name">Nigeria</span> (<span id="country-code">NG</span>)</div>
+                    <div class="data-row"><strong>Continent:</strong> <span id="continent-name">Africa</span> (<span id="continent-code">AF</span>)</div>
+                    <div class="data-row"><strong>Coord:</strong> <span id="latitude">6.5</span>, <span id="longitude">3.375</span></div> -->
+                    <div class="data-row"><strong>City:</strong> <span id="city-name">NIL</span> (<span id="locality-name">NIL</span>)</div>
+                    <div class="data-row"><strong>State:</strong> <span id="state-name">NIL</span> <small id="state-code">NIL</small></div>
+                    <div class="data-row"><strong>Country:</strong> <span id="country-name">NIL</span> (<span id="country-code">NIL</span>)</div>
+                    <div class="data-row"><strong>Continent:</strong> <span id="continent-name">NIL</span> (<span id="continent-code">NIL</span>)</div>
+                    <div class="data-row"><strong>Coord:</strong> <span id="latitude">0.00</span>, <span id="longitude">0.00</span></div>
+                </div>
 
-    <select id="stateSelect">
-    </select>
+                <div class="card" id="update-info">
+                    <h3>Last Update</h3>
+                    <!-- <div class="data-row"><span id="update-time">9:00:00</span> | <span id="update-date">01/03/2026</span></div>
+                    <div class="data-row"><small id="timezone-value">Africa/Lagos GMT+1</small></div> -->
+                    <div class="data-row"><span id="update-time">0:00:00</span> | <span id="update-date">00/00/0000</span></div>
+                    <div class="data-row"><small id="timezone-value">NIL NIL</small></div>
+                </div>
+            </div>
 
-    <select id="citySelect">
-    </select>
+            <div class="controls">
+                <form id="locationForm">
+                    <select id="countrySelect"><option value="">All Countries</option></select>
+                    <select id="stateSelect"></select>
+                    <select id="citySelect"></select>
+                    <button type="submit" id="submitFormBtn">See Weather</button>
+                </form>
+                <button value="start" id="btnStartAutoUpdate" class="auto-btn">Start Auto Update</button>
+            </div>
+        </section>
 
-    <button id="submitFormBtn">See Weather</button>
-</form>
+        <section class="map-container">
+            <div id="map"></div>
+        </section>
+    </main>
 
-
-<button style="background-color: 'green';" value="start" id="btnStartAutoUpdate">Start Auto Update</button>
- 
-    <!-- Load Maps API (NO callback) -->
-  <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5Ids2no6ktU1Qujo-ZdZwViFPtqVfBSU&libraries=places">
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=MAP_API_KEY&libraries=places">
   </script>
-
-    <!-- Your JavaScript Module -->
     <script type="module" src="./main.js"></script>
-
-
 </body>
 </html>

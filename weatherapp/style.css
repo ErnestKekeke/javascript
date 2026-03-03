@@ -1,17 +1,169 @@
-*, *::before, *::after{
+:root {
+    --bg-color: #f0f2f5;
+    --text-color: #333;
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --accent-color: #007bff;
+    --btn-start: #28a745;
+    --border-radius: 12px;
+}
+
+body.dark-theme {
+    --bg-color: #1a1a2e;
+    --text-color: #e0e0e0;
+    --card-bg: rgba(30, 30, 50, 0.9);
+    --accent-color: #4dabf7;
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    text-decoration: none;
-    box-sizing: border-box;
 }
 
-#map {
-    margin-bottom: 20px;
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    padding: 20px;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.app-header h1 span {
+    font-size: 0.5em;
+    font-weight: 300;
+    opacity: 0.7;
+}
+
+/* Layout Strategy */
+.dashboard-container {
+    display: flex;
+    flex-direction: column; /* Default: stacked for small screens */
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Map specific sizes for small screens */
+.map-container {
+    width: 100%;
+    margin: 0 auto;
     height: 400px;
-    width: 50%;
-    border-radius: 20%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* body{
-    background-color: aqua;
-} */
+#map { height: 100%; width: 100%; background: #ddd; }
+
+/* Main Content Area */
+#weather-app {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+}
+
+.data-row { margin: 8px 0; font-size: 1.1rem; }
+
+/* Form Elements */
+.controls form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+select, button {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* #submitFormBtn { background: var(--accent-color); color: white; cursor: pointer; border: none; } */
+
+/* Normal State */
+#submitFormBtn {
+    background: var(--accent-color);
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    position: relative;
+}
+
+/* Hover State */
+#submitFormBtn:hover:not(:disabled) {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* Active/Click State */
+#submitFormBtn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+/* Disabled State - This is what you were missing */
+#submitFormBtn:disabled {
+    background-color: #ccc;      /* Gray out */
+    color: #888;                /* Dim text */
+    cursor: not-allowed;        /* "No Entry" cursor */
+    opacity: 0.7;
+    transform: none;            /* Remove hover movement */
+    box-shadow: none;           /* Remove shadows */
+}
+
+/* Dark Mode adjustment for disabled button */
+body.dark-theme #submitFormBtn:disabled {
+    background-color: #3e3e5e;
+    color: #666;
+}
+
+.auto-btn { background: var(--btn-start); color: white; width: 100%; border: none; cursor: pointer; }
+
+/* Responsive adjustments for Medium/Full screens */
+@media (min-width: 768px) {
+    .dashboard-container {
+        flex-direction: row; /* Side-by-side */
+    }
+
+    .info-panel {
+        flex: 1; /* Takes up remaining space (50-60%) */
+    }
+
+    .map-container {
+        width: 40%; /* Map is 40-50% as requested */
+        height: 600px;
+    }
+}
+
+.theme-btn {
+    background: transparent;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    cursor: pointer;
+}

@@ -146,7 +146,57 @@ async function updateHtml(latitude, longitude) {
     console.log('info')
     const info = await api.getCountriesByLocation(latitude, longitude)
     console.log(info)
+
+    // --- Weather Info ---
+    const tempValue = document.getElementById("temp-value");
+    const windSpeed = document.getElementById("wind-speed");
+    const windDirection = document.getElementById("wind-direction");
+    const weatherDesc = document.getElementById("weather-desc");
+    const elevationValue = document.getElementById("elevation-value");
+    const dayStatus = document.getElementById("day-status");
+
+    tempValue.innerHTML = weather.current_weather.temperature + weather.current_weather_units.temperature
+    windSpeed.innerHTML = weather.current_weather.windspeed + weather.current_weather_units.windspeed
+    windDirection.innerHTML = utils.getDirection(Number(weather.current_weather.winddirection))
+    weatherDesc.innerHTML = utils.getWeatherDescription(Number(weather.current_weather.weathercode))
+    elevationValue.innerHTML = weather.elevation
+    dayStatus.innerHTML = Number(weather.current_weather.is_day) ? "Day" : "Night";
+
+    // --- Location Info ---
+    const latitudeEl = document.getElementById("latitude");
+    const longitudeEl = document.getElementById("longitude");
+    const cityName = document.getElementById("city-name");
+    const localityName = document.getElementById("locality-name");
+    const stateName = document.getElementById("state-name");
+    const stateCode = document.getElementById("state-code");
+    const countryName = document.getElementById("country-name");
+    const countryCode = document.getElementById("country-code");
+    const continentName = document.getElementById("continent-name");
+    const continentCode = document.getElementById("continent-code");
+
+    latitudeEl.innerHTML = info.latitude.toFixed(2)
+    longitudeEl.innerHTML = info.longitude.toFixed(2)
+    cityName.innerHTML = info.city
+    localityName.innerHTML = info.locality
+    stateName.innerHTML = info.principalSubdivision
+    stateCode.innerHTML = info.principalSubdivisionCode
+    countryName.innerHTML = info.countryName
+    countryCode.innerHTML = info.countryCode
+    continentName.innerHTML = info.continent
+    continentCode.innerHTML = info.continentCode  
+
+    // --- Update Info ---
+    const updateTime = document.getElementById("update-time");
+    const updateDate = document.getElementById("update-date");
+    const timezoneValue = document.getElementById("timezone-value");
+
+    const datetime = utils.getDateTime(weather.current_weather.time)
+    updateTime.innerHTML = datetime.time
+    updateDate.innerHTML = datetime.date
+    timezoneValue.innerHTML = weather.timezone + " " + weather.timezone_abbreviation
 }
+
+
 //.................................................. Auto update 
 const btnStartAutoUpdate = document.getElementById('btnStartAutoUpdate');
 let autoUpdateId = 0
@@ -158,9 +208,11 @@ btnStartAutoUpdate.addEventListener('click', function () {
     if (this.value === 'start') {
         // Start auto update
         console.log('Auto update START !!!')
+        updateHtml(defaultLat, defaultLng);
+
         autoUpdateId = window.setInterval(function () {
             updateHtml(defaultLat, defaultLng);
-        }, 5000);
+        }, 180000);
         this.value = 'stop';
         this.value = 'running';
         this.innerHTML = 'Stop Auto Update';
@@ -218,6 +270,7 @@ window.addEventListener("load", () => {
 
     // Initial coordinates (default starting position)
     const initialLocation = { lat: 6.52, lng: 3.38 };
+    updateHtml(6.52, 3.38);
 
     // Create the map and attach it to the #map div
     // This runs only once when the page loads
@@ -266,3 +319,30 @@ window.addEventListener("load", () => {
 
 
 
+// theme, only for HTML Theme update
+// below can be remove during debugging 
+const themeToggle = document.getElementById('themeToggle');
+
+themeToggle.addEventListener('click', () => {
+    // 1. Toggle the class on the body
+    const isDark = document.body.classList.toggle('dark-theme');
+    
+    // 2. Update the button text based on the current mode
+    if (isDark) {
+        themeToggle.innerHTML = "☀️ Light Mode";
+        // Optional: change button style for dark mode
+        themeToggle.style.borderColor = "#4dabf7";
+    } else {
+        themeToggle.innerHTML = "🌙 Dark Mode";
+        themeToggle.style.borderColor = "#333";
+    }
+    
+    // 3. (Optional) Save preference to local storage
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
+// Check for saved theme on page load
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-theme');
+    themeToggle.innerHTML = "☀️ Light Mode";
+}

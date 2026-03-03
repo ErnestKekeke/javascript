@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" text="text/css" href="style.css"/>
+</head>
+<body>
+
+    <h2>World Weather App</h2>
+
+
+<div id="weather-app">
+
+  <!-- Weather Info -->
+  <div id="weather-info">
+    <h2>Weather</h2>
+    <div id="temperature">Temperature: <span id="temp-value">31°C</span></div>
+    <div id="wind">
+      Wind: <span id="wind-speed">10.7 km/h</span>, 
+      Direction: <span id="wind-direction">E 17° N</span>
+    </div>
+    <div id="weather-description">Description: <span id="weather-desc">Clear sky</span></div>
+    <div id="elevation">Elevation / Sea Level: <span id="elevation-value">27</span> m</div>
+    <div id="is-day">Day/Night: <span id="day-status">Day</span></div>
+  </div>
+
+  <!-- Location Info -->
+  <div id="location-info">
+    <h2>Location</h2>
+    <div id="coordinates">
+      Latitude: <span id="latitude">6.5</span>, 
+      Longitude: <span id="longitude">3.375</span>
+    </div>
+    <div id="city">City / Town: <span id="city-name">Sapele</span></div>
+    <div id="locality">Locality: <span id="locality-name">Sapele</span></div>
+    <div id="state">
+      State / Division: <span id="state-name">Delta</span>, <span id="state-code">NG-DE</span>
+    </div>
+    <div id="country">
+      Country: <span id="country-name">Nigeria</span>, <span id="country-code">NG</span>
+    </div>
+    <div id="continent">
+      Continent: <span id="continent-name">Africa</span>, <span id="continent-code">AF</span>
+    </div>
+  </div>
+
+  <!-- Update Info -->
+  <div id="update-info">
+    <h2>Last Update</h2>
+    <div id="last-update-time">Time: <span id="update-time">9:00:00</span></div>
+    <div id="last-update-date">Date: <span id="update-date">01/03/2026</span></div>
+    <div id="timezone">Timezone: <span id="timezone-value">Africa/Lagos GMT+1</span></div>
+  </div>
+
+</div>
+    
+<div id="map"></div>
+<style>
+  #map{
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+
+
+<form id="locationForm">
+    <select id="countrySelect">
+        <option value="" >All Countries</option>
+    </select>
+
+    <select id="stateSelect">
+    </select>
+
+    <select id="citySelect">
+    </select>
+
+    <button id="submitFormBtn">See Weather</button>
+</form>
+
+
+<button style="background-color: 'green';" value="start" id="btnStartAutoUpdate">Start Auto Update</button>
+ 
+    <!-- Load Maps API (NO callback) -->
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY&libraries=places">
+  </script>
+
+    <!-- Your JavaScript Module -->
+    <script type="module" src="./main.js"></script>
+
+
+</body>
+</html>
